@@ -3,16 +3,15 @@
 import complex_arithmetic as ar
 
 testA = [[(3,2),(0,0),(5,-6)],[(1,0),(4,2),(0,1)],[(4,-1),(0,0),(4,0)]]
-testB = [[(5,0),(2,-1),(6,-4)],[(0,0),(4,5),(2,0)],[(7,-4),(2,7),(0,0)]]
+testB = [[(5,0),(2,-1)],[(0,0),(4,5)],[(7,-4),(2,7)]]
 
 def start(): 
   print("Let's do operations using complex matrices.")
  
-  m = input("Number of rows : ")
-  n = input("Number of cols : ")
-  
   choice = input("Select (1) Addition (2) Inverse (3) Scalar multiplication (4) Transpose (5) Matrix multiplication ")
   if choice == 1:
+    m = input("Number of rows : ")
+    n = input("Number of cols : ")
     A = init_matrix(m,n)
     B = init_matrix(m,n)
     
@@ -30,7 +29,8 @@ def start():
     return
 
   if choice == 2:
-    
+    m = input("Number of rows : ")
+    n = input("Number of cols : ")
     A = init_matrix(m,n)
     print ("Enter " + str(n) + "X" + str(m) + " matrix")
     A = populate_matrix(A)
@@ -42,6 +42,8 @@ def start():
     print format(A), "+" , format(inv) , "=" , format(zeroes)
     return
   if choice == 3:
+    m = input("Number of rows : ")
+    n = input("Number of cols : ")
     A = init_matrix(m,n)
     print ("Enter " + str(n) + "X" + str(m) + " matrix")
     A = populate_matrix(A)
@@ -56,6 +58,8 @@ def start():
     print ar.format(scalar), "*", format(A), "=", format(result)
     return
   if choice == 4:
+    m = input("Number of rows : ")
+    n = input("Number of cols : ")
     A = init_matrix(m,n)
     print ("Enter " + str(n) + "X" + str(m) + " matrix")
     A = populate_matrix(A)
@@ -65,20 +69,21 @@ def start():
     print format(T)
     return 
   if choice == 5:
-    if m != n:
-      print("Sorry! can't multiply matrices of unequal dimensions.")
-      return
-    A = init_matrix(m,n)
-    B = init_matrix(m,n)
+    rowsA = input("Number of rows in the matrix A : ")
+    common = input("Number of cols in the matrix A/rows in matrix B: ")
+    A = init_matrix(rowsA,common)
+    colsB = input("Number of cols in matrix B: ")
+    B = init_matrix(common,colsB)
     
-    print ("Enter first " + str(n) + "X" + str(m) + " matrix")
+    print ("Enter matrix A")
     A = populate_matrix(A)
     print(A)
 
-    print ("Enter second " + str(n) + "X" + str(m) + " matrix")
+    print ("Enter matrix B")
     B = populate_matrix(B)
     print(B)
     print
+  
     P = matrix_multiply(A,B)
     print format(A), "*" , format(B) , "=" , format(P)
     return   
@@ -149,15 +154,14 @@ def scalar_multiply(s,A):
   return res
 
 def matrix_multiply(A,B):
-  rows = len(A)
-  cols = len(A[0])
-  BT = transpose(B)
-  res = init_matrix(rows,cols)
-  for j in range(rows):
-    for k in range(cols):
+  rowsA = len(A)
+  colsB = len(B[0])
+  res = init_matrix(rowsA,colsB)
+  for j in range(rowsA):
+    for k in range(colsB):
       el = (0,0)
-      for i in range(len(A[j])):
-        p = ar.multiply(A[j][i],BT[k][i])
+      for i in range(len(B)):
+        p = ar.multiply(A[j][i],B[i][k])
         el = ar.add(el,p)
       res[j][k] = el         
   return res
