@@ -2,6 +2,7 @@
 
 import matrix_arithmetic as mat
 import complex_arithmetic as ar
+import math
 
 n = 2
 def start():
@@ -11,11 +12,14 @@ def start():
   print ("Enter first vector")
   V1 = mat.populate_matrix(V1)
   print(V1)
+  print("Length : " + str(length(V1)))
   print ("Enter second vector")
   V2 = mat.populate_matrix(V2)
   print(V2)
+  print("Length : " + str(length(V2)))
   inner = inner_product(V1,V2)
-  print("Inner product : ")
+  print("-------------------- ")
+  print("Inner product ")
   print(ar.format(inner))
    
 def inner_product(A,B):
@@ -28,6 +32,9 @@ def inner_product(A,B):
   	res = ar.add(res,p)
   return res
   
+def length(A):
+  (re,im) = inner_product(A,A)
+  return math.sqrt(re)
 
 if __name__ == '__main__':
   start()
