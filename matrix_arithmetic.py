@@ -8,7 +8,7 @@ testB = [[(5,0),(2,-1)],[(0,0),(4,5)],[(7,-4),(2,7)]]
 def start(): 
   print("Let's do operations using complex matrices.")
  
-  choice = input("Select (1) Addition (2) Inverse (3) Scalar multiplication (4) Transpose (5) Matrix multiplication ")
+  choice = input("Select (1) Addition (2) Inverse (3) Scalar multiplication (4) Transpose (5) Matrix multiplication (6) Conjugate ")
   if choice == 1:
     m = input("Number of rows : ")
     n = input("Number of cols : ")
@@ -87,6 +87,17 @@ def start():
     P = matrix_multiply(A,B)
     print format(A), "*" , format(B) , "=" , format(P)
     return   
+  if choice == 6:
+    m = input("Number of rows : ")
+    n = input("Number of cols : ")
+    A = init_matrix(m,n)
+    print ("Enter " + str(n) + "X" + str(m) + " matrix")
+    A = populate_matrix(A)
+    print(A)
+    print
+    A_ = conjugate(A)
+    print format(A_)
+    return   
   print ("Invalid choice")
   
 def init_matrix(cols,rows):
@@ -143,6 +154,15 @@ def transpose(A):
     for k in range(rows):
       res[j][k] = A[k][j]
   return res
+
+def conjugate(A): 
+  rows = len(A)
+  cols = len(A[0])
+  res = init_matrix(cols,rows)
+  for j in range(cols):
+    for k in range(rows):
+      res[j][k] = ar.conjugate(A[j][k])
+  return res 
 
 def scalar_multiply(s,A):
   rows = len(A)
