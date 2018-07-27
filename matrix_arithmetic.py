@@ -158,9 +158,9 @@ def transpose(A):
 def conjugate(A): 
   rows = len(A)
   cols = len(A[0])
-  res = init_matrix(cols,rows)
-  for j in range(cols):
-    for k in range(rows):
+  res = init_matrix(rows,cols)
+  for j in range(rows):
+    for k in range(cols):
       res[j][k] = ar.conjugate(A[j][k])
   return res 
 
