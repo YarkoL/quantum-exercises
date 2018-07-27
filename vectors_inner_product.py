@@ -4,9 +4,9 @@ import matrix_arithmetic as mat
 import complex_arithmetic as ar
 import math
 
-n = 2
+n = 3
 def start():
-  print("Let's calculate the inner product of two complex " + str(n) +"-vectors.")
+  print("Let's calculate things based on inner product of two complex " + str(n) +"-vectors.")
   V1 = mat.init_matrix(1,n)
   V2 = mat.init_matrix(1,n)
   print ("Enter first vector")
@@ -21,6 +21,9 @@ def start():
   print("-------------------- ")
   print("Inner product ")
   print(ar.format(inner))
+  print("-------------------- ")
+  print("Distance")
+  print (distance(V1,V2))
    
 def inner_product(A,B):
   res = (0,0)
@@ -35,6 +38,10 @@ def inner_product(A,B):
 def length(A):
   (re,im) = inner_product(A,A)
   return math.sqrt(re)
+
+def distance(A,B):
+  diff = mat.substract(A,B)
+  return length(diff)
 
 if __name__ == '__main__':
   start()

@@ -134,6 +134,15 @@ def add(A,B):
       res[j][k] = ar.add(A[j][k],B[j][k])
   return res
 
+def substract(A,B):
+  rows = len(A)
+  cols = len(A[0])
+  res = init_matrix(rows,cols)
+  for j in range(rows):
+    for k in range(cols):
+      res[j][k] = ar.substract(A[j][k],B[j][k])
+  return res  
+
 def invert(A):
   rows = len(A)
   cols = len(A[0])
