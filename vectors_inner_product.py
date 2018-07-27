@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 import matrix_arithmetic as mat
+import complex_arithmetic as ar
 
 n = 2
 def start():
@@ -13,17 +14,18 @@ def start():
   print ("Enter second vector")
   V2 = mat.populate_matrix(V2)
   print(V2)
-  V = inner_product(V1,V2)
+  inner = inner_product(V1,V2)
   print("Inner product : ")
-  print(mat.format(V))
+  print(ar.format(inner))
    
 def inner_product(A,B):
-  res = mat.init_matrix(1,n)
+  res = (0,0)
   #A_transpose = mat.transpose(A)	
   #print(A_transpose)
-  A_dagger = mat.conjugate(A)	
-  #print(A_dagger)
-  res = mat.matrix_multiply(A_dagger, B)
+  A_ = mat.conjugate(A)	
+  for i in range(n):
+  	p = ar.multiply(A_[0][i],B[0][i])
+  	res = ar.add(res,p)
   return res
   
 
