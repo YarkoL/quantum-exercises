@@ -98,6 +98,7 @@ def start():
     A_ = conjugate(A)
     print format(A_)
     return   
+   
   print ("Invalid choice")
   
 def init_matrix(cols,rows):
@@ -172,6 +173,21 @@ def conjugate(A):
     for k in range(cols):
       res[j][k] = ar.conjugate(A[j][k])
   return res 
+
+def equals(A,B):
+  rowsA = len(A)
+  rowsB = len(B)
+  if rowsA != rowsB:
+    return False
+  colsA = len(A[0])  
+  colsB = len(B[0])
+  if colsA != colsB:
+    return False
+  for j in range(rowsA):
+    for k in range(colsA):
+      if A[j][k] != B[j][k]:
+        return False  
+  return True
 
 def scalar_multiply(s,A):
   rows = len(A)
