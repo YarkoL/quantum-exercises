@@ -98,7 +98,6 @@ def start():
     A_ = conjugate(A)
     print format(A_)
     return   
-   
   print ("Invalid choice")
   
 def init_matrix(cols,rows):
@@ -164,6 +163,19 @@ def transpose(A):
     for k in range(rows):
       res[j][k] = A[k][j]
   return res
+
+def get_identity_matrix(n):
+  A = init_matrix(n,n)
+  for i in range(n):
+    A[i][i] = (1,0)
+  return A  
+
+def trace(A):
+  n = len(A)
+  ret = (0,0)
+  for i in range(n):
+    ret = ar.add(ret,A[i][i])
+  return ret  
 
 def conjugate(A): 
   rows = len(A)
