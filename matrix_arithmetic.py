@@ -4,11 +4,13 @@ import complex_arithmetic as ar
 
 testA = [[(3,2),(0,0),(5,-6)],[(1,0),(4,2),(0,1)],[(4,-1),(0,0),(4,0)]]
 testB = [[(5,0),(2,-1)],[(0,0),(4,5)],[(7,-4),(2,7)]]
+testC = [[(3,2),(5,-1),(0,2)],[(0,0),(12,0),(6,-3)],[(2,0),(4,4),(9,3)]]
+testD = [[(1,0),(3,4),(5,-7)],[(10,2),(6,0),(2,5)],[(0,0),(1,0),(2,9)]]
 
 def start(): 
   print("Let's do operations using complex matrices.")
  
-  choice = input("Select (1) Addition (2) Inverse (3) Scalar multiplication (4) Transpose (5) Matrix multiplication (6) Conjugate ")
+  choice = input("Select (1) Addition (2) Inverse (3) Scalar multiplication (4) Transpose (5) Matrix multiplication (6) Conjugate (7) Tensor product ")
   if choice == 1:
     m = input("Number of rows : ")
     n = input("Number of cols : ")
@@ -98,6 +100,26 @@ def start():
     A_ = conjugate(A)
     print format(A_)
     return   
+  if choice == 7:
+    rowsA = input("Number of rows in the matrix A : ")
+    colsA = input("Number of cols in the matrix A: ")
+    A = init_matrix(rowsA,colsA)
+    rowsB = input("Number of cols in matrix B: ")
+    colsB = input("Number of cols in matrix B: ")
+    B = init_matrix(rowsB,colsB)
+    
+    print ("Enter matrix A")
+    A = populate_matrix(A)
+    print(A)
+
+    print ("Enter matrix B")
+    B = populate_matrix(B)
+    print(B)
+    print
+  
+    K = kronecker_product(A,B)
+    print format(A), "tensor" , format(B) , "=" , format(K)
+    return
   print ("Invalid choice")
   
 def init_matrix(cols,rows):
@@ -221,6 +243,19 @@ def matrix_multiply(A,B):
         p = ar.multiply(A[j][i],B[i][k])
         el = ar.add(el,p)
       res[j][k] = el         
+  return res
+
+def kronecker_product(A,B):
+  m = len(A)
+  n = len(A[0])
+  p = len(B)
+  q = len(B[0])
+  res = init_matrix(m*p, n*q)
+  for rowA in range(m):
+    for colA in range(n):
+      for rowB in range(p):
+        for colB in range(q):
+          res[p*rowA+rowB][q*colA+colB] = ar.multiply(A[rowA][colA],B[rowB][colB])
   return res
 
 if __name__ == '__main__':
