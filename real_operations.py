@@ -1,16 +1,14 @@
 #!/usr/bin/env python2
 
 def start():
-  A = [[1,2,3]]
-  B = [[2,1,3],[3,3,2],[4,1,2]]
-  print matrix_multiply(A,B)
+  n = input("Enter length of vector   ")
+  V = create_vector(n)
+  print V
 
 def create_vector(n):
-  v = []	
-  for i in range(n):
-    r = input("Enter real at place " + str(i) + "  ")
-    v.append(r)
-  return v 
+  V = init_matrix(1,n)
+  populate_matrix(V)
+  return V
   
 def init_matrix(m,n):
   M = [0] * m
