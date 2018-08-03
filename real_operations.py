@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 
+from __future__ import division
+
 def start():
-  n = input("Enter length of vector   ")
-  V = create_vector(n)
-  print V
+  pass 
 
 def create_vector(n):
   V = init_matrix(1,n)
@@ -22,7 +22,7 @@ def populate_matrix(M):
   for i in range(rows):
     for j in range(cols):
       r = input("Enter real number at " + str(i) + "," + str(j) + " : ")
-      M[i][j] = r
+      M[i][j] = float(r)
   return M
 
 def add(A,B):
