@@ -2,11 +2,12 @@
 
 import real_operations as reals
 
-testing = False
+testing = True
 
 def start():
   if testing:
-    pass
+    M = [[0,0,0,0,0,1],[0,0,1,0,0,0],[0,0,0,0,1,0],[0,0,0,1,0,0],[0,0,0,0,0,1],[0,0,1,0,0,0]]
+    X = [[5,5,0,2,0,15]]
   else:  	
     n = input("Enter the length of the state vector  ")
     X = reals.init_matrix(1,n)
@@ -28,15 +29,11 @@ def start():
     X = reals.matrix_multiply(X,M)
     print X
 
-
-def apply_transition(M,X):
-  n = len(X[0])
-  X1 = reals.init_matrix(1,n)
-  for i in range(n):
-    for j in range(n):
-      mx = M[i][j] * X[0][j]
-      X1[0][i] += mx 
-  return X1     	
-
+  M_i = M
+  for i in range(10):
+    print i
+    M_i = reals.matrix_multiply(M,M_i)
+    print M_i
+        
 if __name__ == '__main__':
   start()
