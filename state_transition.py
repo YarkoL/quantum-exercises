@@ -1,13 +1,14 @@
 #!/usr/bin/env python2
 
+from __future__ import division
 import real_operations as reals
 
-testing = True
+testing = False
 
 def start():
   if testing:
-    M = [[0,0,0,0,0,1],[0,0,1,0,0,0],[0,0,0,0,1,0],[0,0,0,1,0,0],[0,0,0,0,0,1],[0,0,1,0,0,0]]
-    X = [[5,5,0,2,0,15]]
+    M = [[0.0,0.5,0.5,0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.333,0.333,0.333,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.333,0.333,0.333],[0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]]
+    X = [[1,0,0,0,0,0,0,0]]
   else:  	
     n = input("Enter the length of the state vector  ")
     X = reals.init_matrix(1,n)
@@ -15,8 +16,9 @@ def start():
     print ("Enter the wiring of the system ")
     M = reals.init_matrix(n,n)
     for i in range(n):
-      j = input("Slot " + str(i) + " goes to   ")
-      M[i][j] = 1
+    	for j in range(n):
+      	  p = input("Probability of " + str(i) + " changing to " + str(j) + "  ")
+          M[i][j] = round(float(p),3)
     print M 
 
     print ("Enter inital state")
