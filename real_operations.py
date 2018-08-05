@@ -11,9 +11,9 @@ def create_vector(n):
   return V
   
 def init_matrix(m,n):
-  M = [0] * m
+  M = [float(0)] * m
   for i in range(m):
-    M[i] = [0] * n
+    M[i] = [float(0)] * n
   return M	
 
 def populate_matrix(M):
@@ -31,7 +31,7 @@ def add(A,B):
   res = init_matrix(rows,cols)
   for j in range(rows):
     for k in range(cols):
-      res[j][k] = A[j][k]+B[j][k]
+      res[j][k] = round(A[j][k]+B[j][k],3)
   return res
 
 def substract(A,B):
@@ -40,7 +40,7 @@ def substract(A,B):
   res = init_matrix(rows,cols)
   for j in range(rows):
     for k in range(cols):
-      res[j][k] = A[j][k]-B[j][k]
+      res[j][k] = round(A[j][k]-B[j][k],3)
   return res    
 
 def matrix_multiply(A,B):
@@ -53,7 +53,7 @@ def matrix_multiply(A,B):
       for i in range(len(B)):
         p = A[j][i] * B[i][k]
         el += p
-      res[j][k] = el         
+      res[j][k] = round(el,3)         
   return res  
 
 if __name__ == '__main__':
