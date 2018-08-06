@@ -30,14 +30,14 @@ def add(c1,c2):
   a2,b2 = c2
   a = a1 + a2
   b = b1 + b2
-  return (a,b)
+  return (round(a,3), round(b,3))
 
 def substract(c1,c2):
   a1,b1 = c1
   a2,b2 = c2
   a = a1 - a2
   b = b1 - b2
-  return (a,b)
+  return (round(a,3), round(b,3))
 
 def multiply(c1,c2):
   a1,b1 = c1
