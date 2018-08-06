@@ -9,12 +9,12 @@ def start():
   print
   a1 = input("Enter real part of the first complex number : ")
   b1 = input("Enter imaginary part of the first complex number : ") 
-  c1 = (a1,b1)
+  c1 = (round(a1,3),round(b1,3))
   printout(c1)
   print
   a2 = input("Enter real part of the second complex number : ")
   b2 = input("Enter imaginary part of the second complex number : ") 
-  c2 = (a2,b2)
+  c2 = (round(a2,3),round(b2,3))
   printout(c2)
   print
   print c1,"+",c2,"=",format(add(c1,c2))
@@ -44,7 +44,7 @@ def multiply(c1,c2):
   a2,b2 = c2
   a = a1 * a2 - b1 * b2
   b = a1 * b2 + a2 * b1
-  return (a, b)
+  return (round(a,3), round(b,3))
 
 def divide(c1,c2):
   a1,b1 = c1
@@ -52,11 +52,12 @@ def divide(c1,c2):
   mod_sq = modulus_squared(c2)
   a = ( a1 * a2 + b1 * b2 ) / mod_sq
   b = ( a2 * b1 - a1 * b2 ) / mod_sq
-  return (a,b)
+  return (round(a,3),round(b,3))
 
 def modulus_squared(c):
   a,b = c
-  return float(a)**2 + float(b)**2
+  res = float(a)**2 + float(b)**2
+  return round(res,3) 
 
 def conjugate(c):
   a,b = c
@@ -80,7 +81,7 @@ def format(c):
 def printout(c):
   print format(c)
   print "Conjugate : ", format(conjugate(c))
-  print "Modulus : ", math.sqrt(modulus_squared(c))
+  print "Modulus : ", round(math.sqrt(modulus_squared(c)),3)
 
 if __name__ == '__main__':
   start()
