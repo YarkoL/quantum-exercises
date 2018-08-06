@@ -15,8 +15,9 @@ def start():
     n = input("Enter dimension n  :  ")
     A = mat.init_matrix(n,n)
     A = mat.populate_matrix(A)
-  print("Is this matrix hermitian : ", is_hermitian(A))
-  print("Is this matrix unitary : ", is_unitary(A))
+  print(A)  
+  print("Is this matrix hermitian : " + str(is_hermitian(A)))
+  print("Is this matrix unitary : " + str(is_unitary(A)))
 
 def is_hermitian(A):
   A_transposed = mat.transpose(A)
