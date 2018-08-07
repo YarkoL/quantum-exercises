@@ -56,6 +56,19 @@ def matrix_multiply(A,B):
       res[j][k] = round(el,3)         
   return res  
 
+def kronecker_product(A,B):
+  m = len(A)
+  n = len(A[0])
+  p = len(B)
+  q = len(B[0])
+  res = init_matrix(m*p, n*q)
+  for rowA in range(m):
+    for colA in range(n):
+      for rowB in range(p):
+        for colB in range(q):
+          res[p*rowA+rowB][q*colA+colB] = round(A[rowA][colA] * B[rowB][colB],3)
+  return res  
+
 if __name__ == '__main__':
   start()
 
