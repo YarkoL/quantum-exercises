@@ -1,7 +1,10 @@
 from __future__ import division
 import matrix_arithmetic as mat
 import complex_arithmetic as ar
+import vectors_inner_product as inner
 import math
+
+
 
 def start():
   print("Let's calculate some probabilities in a simple quantum system")
@@ -13,6 +16,17 @@ def start():
   print("--------------------------------------------------")
   for i in range(n):
   	print("The probability of finding particle at state " + str(i) + " is " + str(round(p[0][i],4)))
+  print("--------------------------------------------------")
+  answer = raw_input("Calculate transition probability? (Hit 'y' to continue) :  ")
+  if answer != 'y': 
+  	print("Bye")
+  	return
+  bra = mat.init_matrix(1,n) 	
+  print("Enter another (bra) state vector")
+  mat.populate_matrix(bra)
+  trans = get_transition_probability(bra,ket)
+  print("--------------------------------------------------")
+  print("Transition probability <bra|ket> is " + ar.format(trans))
 
 def get_probabilities(psi):
   n = len(psi[0])
@@ -27,8 +41,8 @@ def get_probabilities(psi):
     res[0][i] = moduli_sq[0][i]/sum_of_moduli_sq
   return res
 
-def get_transition_probability(psi1,psi2):
-  pass	
+def get_transition_probability(bra,ket):
+  return inner.inner_product(bra,ket)	
 
 if __name__ == '__main__':
   start()
