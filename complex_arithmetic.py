@@ -46,6 +46,10 @@ def multiply(c1,c2):
   b = a1 * b2 + a2 * b1
   return (round(a,3), round(b,3))
 
+def scalar_multiply(s,c):
+  a,b = c
+  return (s*a,s*b)
+
 def divide(c1,c2):
   a1,b1 = c1
   a2,b2 = c2
