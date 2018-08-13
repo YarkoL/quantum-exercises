@@ -3,6 +3,7 @@ import math
 import matrix_arithmetic as mat
 import hermitian_test as check
 import vectors_inner_product as inner
+
 testing = False
 
 def start():
@@ -28,11 +29,30 @@ def start():
     return
   print("--------------------------------------------------")
   print("Expected value of observable on ket : " + str(a))
+  a,b = variance(H,psi)
+  if b != 0:
+    print "Variance ought to be a real number, but something went wrong"
+    print a,b
+    return
+  print("--------------------------------------------------")
+  print("Variance from expected value  : " + str(a))
+
 
 def expected_value(H,psi):
   h_psi = mat.matrix_multiply(H,psi)	
   #print h_psi
   return inner.inner_product(mat.transpose(h_psi),mat.transpose(psi))
+
+def variance(H,psi):
+  ev = expected_value(H,psi)
+  I = mat.get_identity_matrix(len(psi))
+  ev_M = mat.scalar_multiply(ev,I)
+  demean = mat.substract(H,ev_M)
+  demean_sq = mat.matrix_multiply(demean,demean)
+  res_intermediate = mat.matrix_multiply(demean_sq,psi)
+  psi_conj = mat.conjugate(psi)
+  res = mat.matrix_multiply(mat.transpose(psi_conj),res_intermediate)
+  return res[0][0]
 
 if __name__ == '__main__':
   start()
